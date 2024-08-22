@@ -326,3 +326,36 @@ FROM tb_clients
 SELECT ROWID, id_cliente
 FROM tb_clients;
 
+SELECT 2 * 6
+FROM dual;
+
+SELECT preco, preco * 2 "Dobro do Preço"
+FROM tb_produtos;
+
+SELECT nome || ' ' || sobrenome AS "Nome do Cliente"
+FROM tb_clients;
+
+SELECT id_cliente, nome, sobrenome, dt_nascimento
+FROM tb_clients
+WHERE dt_nascimento IS NULL;
+
+SELECT id_cliente, nome, sobrenome,
+NVL(telefone, 'Número do telefone desconhecido') AS Número_Telefone
+FROM tb_clients;
+
+SELECT nome, LENGTH(nome) "expressão1",
+    sobrenome, LENGTH(sobrenome) "expressão2",
+    NULLIF(LENGTH(nome), LENGTH(sobrenome)) "resultado"
+FROM tb_funcionarios
+
+
+SELECT nome, sobrenome,
+    COALESCE(telefone, TO_CHAR('Telefone inexistente!!!')) "Exemplo"
+FROM tb_clients
+
+SELECT DISTINCT id_cliente
+FROM tb_compras;
+
+SELECT ROWNUM, id_produto, nm_produto
+FROM tb_produtos
+WHERE ROWNUM <=3;
