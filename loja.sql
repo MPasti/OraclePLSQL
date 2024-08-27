@@ -359,3 +359,31 @@ FROM tb_compras;
 SELECT ROWNUM, id_produto, nm_produto
 FROM tb_produtos
 WHERE ROWNUM <=3;
+
+SELECT *
+FROM tb_clients
+WHERE nome LIKE '_o%%';
+
+SELECT *
+FROM tb_clients
+WHERE id_cliente IN (2, 3, 5);
+
+SELECT *
+FROM tb_clients
+WHERE id_cliente BETWEEN 1 AND 3;
+
+SELECT *
+FROM tb_clients
+WHERE dt_nascimento > '01/JAN/1970' OR id_cliente > 3;
+
+SELECT tb_produtos.nm_produto,
+       tb_tipos_produtos.nm_tipo_produto
+FROM tb_produtos, tb_tipos_produtos
+WHERE tb_produtos.id_tipo_produto = tb_tipos_produtos.id_tipo_produto
+ORDER BY tb_produtos.nm_produto;
+
+//com Alias
+SELECT p.nm_produto, tp.nm_tipo_produto
+FROM tb_produtos p, tb_tipos_produtos tp
+WHERE p.id_tipo_produto = tp.id_tipo_produto
+ORDER BY p.nm_produto;
