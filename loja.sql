@@ -387,3 +387,48 @@ SELECT p.nm_produto, tp.nm_tipo_produto
 FROM tb_produtos p, tb_tipos_produtos tp
 WHERE p.id_tipo_produto = tp.id_tipo_produto
 ORDER BY p.nm_produto;
+
+SELECT c.nome, c.sobrenome, p.nm_produto AS produto,
+    tp.nm_tipo_produto AS tipo
+FROM tb_clients c, tb_compras co, tb_produtos p, tb_tipos_produtos tp
+WHERE c.id_cliente = co.id_cliente AND
+      p.id_produto = co.id_produto AND
+      p.id_tipo_produto = tp.id_tipo_produto
+ORDER BY p.nm_produto;
+
+//o operador + esta no lado oposta da coluna id_tipo_produto, na tabela tb_produtos a coluna que contém valor nulo
+SELECT p.nm_produto AS produto, tp.nm_tipo_produto AS tipo
+FROM tb_produtos p, tb_tipos_produtos tp
+WHERE p.id_tipo_produto = tp.id_tipo_produto(+)
+ORDER BY 1;
+
+SELECT f.nome || '' || f.sobrenome || ' trabalha para ' || g.nome
+FROM tb_funcionarios f, tb_funcionarios g
+WHERE f.id_gerente = g.id_funcionario
+ORDER BY f.nome;
+
+SELECT p.nm_produto AS PRODUTO, tp.nm_tipo_produto AS TIPO
+FROM tb_produtos p
+INNER JOIN tb_tipos_produtos tp ON (p.id_tipo_produto = tp.id_tipo_produto)
+ORDER BY p.nm_produto;
+
+SELECT f.nome, f.sobrenome, f.cargo, f.salario, gs.id_salario
+FROM tb_funcionarios f
+INNER JOIN tb_grades_salarios gs ON (f.salario BETWEEN gs.base_salario AND gs.teto_salario)
+ORDER BY gs.id_salario;
+
+USING(p.id_tipo_produto)
+
+SELECT p.nm_produto AS PRODUTO,
+    tp.nm_tipo_produto AS TIPO,id_tipo_produto
+FROM tb_produtos p
+INNER JOIN tb_tipos_produtos tp
+USING(p.id_tipo_produto);
+
+SELECT c.nome, c.sobrenome, p.nm_produto AS produto,
+       tp.nm_tipo_produto AS tipo
+FROM tb_clients c
+INNER JOIN tb_compras co USING(id_cliente)
+INNER JOIN tb_produtos p USING(id_produto)
+INNER JOIN tb_tipos_produtos tp USING (id_tipo_produto)
+ORDER BY p.nm_produto;
