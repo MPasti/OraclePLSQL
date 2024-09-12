@@ -23,3 +23,29 @@ FROM dual;
 
 SELECT TO_CHAR(12345678, '999,999.99')
 FROM dual;
+
+SELECT 
+	CAST(12345.67 AS VARCHAR2(10)),
+	CAST('9A4F' AS RAW(2)),
+	CAST('01-DEC-2007' AS DATE)
+FROM DUAL;
+
+SELECT id_cliente, nome, sobrenome, dt_nascimento
+FROM tb_clients
+WHERE REGEXP_LIKE(nome, 'j', 'i');
+
+SELECT
+    REGEXP_REPLACE('Teste de expressão regular', 'd[[:alpha:]]{1}', 'Oracle')
+AS RESULTADO
+FROM DUAL;
+
+SELECT
+    REGEXP_COUNT('teste teste teste teste expressão regular', 't[[:alpha:]]{4}') AS resultado
+FROM DUAL;
+
+SELECT MAX(preco), MIN(preco)
+FROM tb_produtos;
+
+
+
+
