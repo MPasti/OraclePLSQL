@@ -34,6 +34,11 @@ SELECT id_cliente, nome, sobrenome, dt_nascimento
 FROM tb_clients
 WHERE REGEXP_LIKE(nome, 'j', 'i');
 
+
+SELECT id_cliente, nome, sobrenome, dt_nascimento
+FROM tb_clientes
+WHERE REGEXP_LIKE(TO_CHAR(dt_nascimento, 'YYYY'), '196[5-8]$');
+
 SELECT
     REGEXP_REPLACE('Teste de expressão regular', 'd[[:alpha:]]{1}', 'Oracle')
 AS RESULTADO
@@ -46,6 +51,5 @@ FROM DUAL;
 SELECT MAX(preco), MIN(preco)
 FROM tb_produtos;
 
-
-
-
+SELECT nm_produto, LENGTH(nm_produto) AS 'Length do produto'
+FROM tb_produtos;
