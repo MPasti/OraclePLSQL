@@ -6,7 +6,7 @@ AND (salario, NVL(percentual_comissao, 0)) IN (SELECT salario, NVL(percentual_co
                                               WHERE e.id_departamento = d.id_departamento
                                               AND d.id_localizacao = 1700);
 
-SELECT id_empregado, sobrenome, id_departamento
+	SELECT id_empregado, sobrenome, id_departamento
 FROM tb_empregado
 WHERE id_departamento IN (SELECT id_departamento
                           FROM tb_departamento
@@ -15,8 +15,9 @@ WHERE id_departamento IN (SELECT id_departamento
                                                    WHERE cidade LIKE 'T%'));
 
 
-
-
-
-
-
+SELECT sobrenome, id_funcao, salario
+FROM tb_empregado
+WHERE salario > ALL (SELECT salario
+                     FROM tb_empregado
+                     WHERE id_funcao = 'SA_MAN')
+ORDER BY 3 DESC;                     
